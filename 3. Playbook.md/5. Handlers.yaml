@@ -1,0 +1,18 @@
+- hosts: stg[0]
+  user: ansible
+  become: yes
+  connection: ssh
+  gather_facts: yes
+
+  tasks:
+    - name: install httpd
+      action: yum pkg=httpd state=present
+      notify: 
+        - start
+        - deploy
+
+  handlers:
+    - name: start
+      action: service name=httpd state=started
+    - name: deploy
+      action: copy src=index.html dest=/var/www/html
