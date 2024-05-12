@@ -1,0 +1,17 @@
+- hosts: stg[0]
+  user: ansible
+  become: yes
+  connection: ssh
+  gather_facts: yes
+
+  vars:
+    pkgname: "httpd"
+    indexpath: "/var/www/html"
+
+  tasks:
+    - name: install httpd
+      action: yum pkg="{{pkgname}}" state=present
+    - name: start httpd
+      action: service name=httpd state=started
+    - name: copy index.html
+      action: copy src=index.html dest="{{indexpath}}"
