@@ -1,0 +1,27 @@
+## install java, donwload tomcat and deploy application.
+## yaml ansible-playbook.
+
+
+- hosts: dev
+  user: ansible
+  connection: ssh
+  become : yes
+  gather_facts: yes
+
+  tasks:
+    - name: install_java
+      action: yum pkg=java-11-amazon-corretto.x86_64 state=present
+
+    - name: Unarchive a file that needs to be downloaded   
+      unarchive:
+       src: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.85/bin/apache-tomcat-9.0.85.zip  
+       dest: /tmp/new/
+       remote_src: yes  
+    
+    - name: multiple_command
+      command: |  
+        chmod +x -R /tmp/new/apache-tomcat-9.0.85/bin/
+        /tmp/new/apache-tomcat-9.0.85/bin/startup.sh
+
+    - name: deploy_war
+      action: get_url url=https://tomcat.apache.org/tomcat-7.0-doc/appdev/sample/sample.war dest=/tmp/new/apache-tomcat-9.0.85/webapps/
