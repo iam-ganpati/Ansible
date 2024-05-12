@@ -25,3 +25,7 @@ Welcome to the Ansible repository ! This repository contains a collection of gui
 
 - Example projects demonstrating Ansible best practices and advanced usage
 - Includes multiple host group management, conditional tasks, and deployment automation
+
+
+
+![image](https://github.com/gk-aws-dev/Ansible/assets/154478305/c6c1048c-13b0-46d0-a241-a07668fe593c)
