@@ -11,4 +11,4 @@
 
     - name: stg server
       action: yum pkg=httpd state=present
-      when: inventory_hostname in groups['stg'] 
+      when: inventory_hostname in groups['stg']
